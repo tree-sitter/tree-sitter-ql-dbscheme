@@ -1,0 +1,81 @@
+=================
+table declaration
+=================
+
+/*
+ * External artifacts
+ */
+
+externalDefects(
+  unique int id : @externalDefect,
+  varchar(900) queryPath : string ref,
+  int location : @location ref,
+  varchar(900) message : string ref,
+  float severity : float ref
+);
+
+---
+(dbscheme (block_comment) (entry
+  (table
+    (tableName (simpleId))
+    (column (unique) (reprType (int)) (simpleId) (colType (dbtype)))
+    (column (reprType (varchar) (integer)) (simpleId) (colType (string)) (ref))
+    (column (reprType (int)) (simpleId) (colType (dbtype)) (ref))
+    (column (reprType (varchar) (integer)) (simpleId) (colType (string)) (ref))
+    (column (reprType (float)) (simpleId) (colType (float)) (ref)))))
+
+====
+case
+====
+
+case @py_dict_item.kind of
+    0 = @py_DictUnpacking
+|   1 = @py_KeyValuePair
+|   2 = @py_keyword;
+
+---
+
+(dbscheme (entry
+  (caseDecl
+    (case)
+    (dbtype)
+    (simpleId)
+    (branch (integer) (dbtype))
+    (branch (integer) (dbtype))
+    (branch (integer) (dbtype)))))
+
+
+=====
+union
+=====
+
+@container = @folder | @file;
+
+---
+
+(dbscheme (entry
+  (unionDecl
+    (dbtype)
+    (dbtype)
+    (dbtype))))
+
+================
+table annotation
+================
+
+#keyset[id, num]
+compilation_args(
+    int id : @compilation ref,
+    int num : int ref,
+    string arg : string ref
+);
+
+---
+
+(dbscheme (entry
+  (table
+    (annotation (argsAnnotation (annotName) (simpleId) (simpleId)))
+    (tableName (simpleId))
+    (column (reprType (int)) (simpleId) (colType (dbtype))
+    (ref)) (column (reprType (int)) (simpleId) (colType (int)) (ref))
+    (column (reprType (string)) (simpleId) (colType (string)) (ref)))))
