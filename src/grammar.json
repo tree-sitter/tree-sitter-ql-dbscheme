@@ -336,8 +336,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "case"
+          "type": "STRING",
+          "value": "case"
         },
         {
           "type": "FIELD",
@@ -509,26 +509,6 @@
           "name": "string"
         }
       ]
-    },
-    "type": {
-      "type": "STRING",
-      "value": "type"
-    },
-    "subtype": {
-      "type": "STRING",
-      "value": "subtype"
-    },
-    "case": {
-      "type": "STRING",
-      "value": "case"
-    },
-    "of": {
-      "type": "STRING",
-      "value": "of"
-    },
-    "order": {
-      "type": "STRING",
-      "value": "order"
     },
     "key": {
       "type": "STRING",

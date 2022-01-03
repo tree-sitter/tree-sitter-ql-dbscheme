@@ -37,7 +37,6 @@ case @py_dict_item.kind of
 
 (dbscheme (entry
   (caseDecl
-    (case)
     (dbtype)
     (simpleId)
     (branch (integer) (dbtype))

@@ -118,10 +118,6 @@
         {
           "type": "branch",
           "named": true
-        },
-        {
-          "type": "case",
-          "named": true
         }
       ]
     }
@@ -434,7 +430,7 @@
   },
   {
     "type": "case",
-    "named": true
+    "named": false
   },
   {
     "type": "date",

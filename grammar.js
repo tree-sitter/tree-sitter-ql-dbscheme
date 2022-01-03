@@ -64,7 +64,7 @@ module.exports = grammar({
 
 
         caseDecl: $ => seq(
-            $.case,
+            "case",
             field('base', $.dbtype),
             '.',
             field('discriminator', $.simpleId),
@@ -98,11 +98,6 @@ module.exports = grammar({
             $.string,
         ),
 
-        type: $ => 'type',
-        subtype: $ => 'subtype',
-        case: $ => 'case',
-        of: $ => 'of',
-        order: $ => 'order',
         key: $ => 'key',
         ref: $ => 'ref',
         int: $ => 'int',
