@@ -12,9 +12,6 @@ module.exports = grammar({
     rules: {
         dbscheme: $ => choice(repeat($.entry)),
 
-
-        // DBscheme stuff below this line
-
         entry: $ => choice(
             $.table,
             $.unionDecl,
