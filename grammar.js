@@ -59,7 +59,6 @@ module.exports = grammar({
             optional(';'),
         ),
 
-
         caseDecl: $ => seq(
             "case",
             field('base', $.dbtype),
