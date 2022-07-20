@@ -1,7 +1,7 @@
 {
-  "name": "tree-sitter-ql",
+  "name": "tree-sitter-ql-dbscheme",
   "version": "0.0.1",
-  "description": "ql grammar for tree-sitter",
+  "description": "ql dbscheme grammar for tree-sitter",
   "main": "bindings/node",
   "keywords": [
     "parsing",
