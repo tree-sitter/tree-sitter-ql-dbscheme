@@ -1,5 +1,5 @@
 {
-  "name": "dbscheme",
+  "name": "ql_dbscheme",
   "word": "_lower_id",
   "rules": {
     "dbscheme": {
@@ -612,4 +612,3 @@
   "inline": [],
   "supertypes": []
 }
-
