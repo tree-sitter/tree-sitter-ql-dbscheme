@@ -1,6 +1,6 @@
 VERSION := 0.0.1
 
-LANGUAGE_NAME := tree-sitter-dbscheme
+LANGUAGE_NAME := tree-sitter-ql_dbscheme
 
 # repository
 SRC_DIR := src

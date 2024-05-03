@@ -1,4 +1,4 @@
-"Dbscheme grammar for tree-sitter"
+"QlDbscheme grammar for tree-sitter"
 
 from ._binding import language
 

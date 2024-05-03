@@ -2,15 +2,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "TreeSitterDbscheme",
+    name: "TreeSitterQlDbscheme",
     products: [
-        .library(name: "TreeSitterDbscheme", targets: ["TreeSitterDbscheme"]),
+        .library(name: "TreeSitterQlDbscheme", targets: ["TreeSitterQlDbscheme"]),
     ],
     dependencies: [
         .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
     ],
     targets: [
-        .target(name: "TreeSitterDbscheme",
+        .target(name: "TreeSitterQlDbscheme",
                 path: ".",
                 exclude: [
                     "Cargo.toml",
@@ -49,11 +49,10 @@ let package = Package(
             name: "TreeSitterDbschemeTests",
             dependencies: [
                 "SwiftTreeSitter",
-                "TreeSitterDbscheme",
+                "TreeSitterQlDbscheme",
             ],
             path: "bindings/swift/TreeSitterDbschemeTests"
         )
     ],
-
     cLanguageStandard: .c11
 )

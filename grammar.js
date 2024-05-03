@@ -1,5 +1,5 @@
 module.exports = grammar({
-    name: 'dbscheme',
+    name: 'ql_dbscheme',
 
     extras: $ => [
         /[ \t\r\n]/,

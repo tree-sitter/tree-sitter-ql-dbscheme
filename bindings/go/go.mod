@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-dbscheme
+module github.com/tree-sitter/tree-sitter-ql_dbscheme
 
 go 1.22
 

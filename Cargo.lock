@@ -63,7 +63,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "tree-sitter-dbscheme"
+name = "tree-sitter-ql-dbscheme"
 version = "0.0.1"
 dependencies = [
  "cc",
