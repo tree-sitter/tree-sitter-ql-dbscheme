@@ -8,12 +8,27 @@
     "incremental"
   ],
   "dependencies": {
-    "nan": "^2.12.1"
+    "nan": "^2.12.1",
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.1"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.2"
+    "tree-sitter-cli": "^0.20.2",
+    "prebuildify": "^6.0.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.20.2"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "scripts": {
-    "test": "tree-sitter test"
+    "tree-sitter": "tree-sitter",
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "build": "tree-sitter generate && node-gyp build",
+    "install": "node-gyp-build"
   }
 }
