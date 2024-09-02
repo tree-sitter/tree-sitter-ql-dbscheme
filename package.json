@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-ql-dbscheme",
-  "version": "0.0.1",
+  "version": "0.23.0",
   "description": "QL DBScheme grammar for tree-sitter",
   "repository": "github:tree-sitter/tree-sitter-ql-dbscheme",
   "license": "MIT",
