@@ -1,6 +1,6 @@
 [package]
 name = "tree-sitter-ql-dbscheme"
-description = "QlDbscheme grammar for tree-sitter"
+description = "QL DBScheme grammar for tree-sitter"
 version = "0.0.1"
 license = "MIT"
 readme = "README.md"
@@ -18,7 +18,9 @@ path = "bindings/rust/lib.rs"
 
 [dependencies]
 tree-sitter-language = "0.1.0"
-tree-sitter = "0.23.0"
 
 [build-dependencies]
-cc = "1.0.87"
+cc = "1.1.15"
+
+[dev-dependencies]
+tree-sitter = "0.23"
