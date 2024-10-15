@@ -11,5 +11,5 @@ fn main() {
     c_config.file(&parser_path);
     println!("cargo:rerun-if-changed={}", parser_path.to_str().unwrap());
 
-    c_config.compile("tree-sitter-ql_dbscheme");
+    c_config.compile("tree-sitter-ql-dbscheme");
 }

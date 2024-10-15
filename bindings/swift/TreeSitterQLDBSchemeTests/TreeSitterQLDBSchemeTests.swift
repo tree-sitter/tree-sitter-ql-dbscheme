@@ -1,8 +1,8 @@
 import XCTest
 import SwiftTreeSitter
-import TreeSitterQlDbscheme
+import TreeSitterQLDBScheme
 
-final class TreeSitterQlDbschemeTests: XCTestCase {
+final class TreeSitterQLDBSchemeTests: XCTestCase {
     func testCanLoadGrammar() throws {
         let parser = Parser()
         let language = Language(language: tree_sitter_ql_dbscheme())

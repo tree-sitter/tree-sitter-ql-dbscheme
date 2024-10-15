@@ -1,128 +1,141 @@
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 module.exports = grammar({
-    name: 'ql_dbscheme',
+  name: 'ql_dbscheme',
 
-    extras: $ => [
-        /[ \t\r\n]/,
-        $.line_comment,
-        $.block_comment,
-    ],
+  extras: $ => [
+    /[ \t\r\n]/,
+    $.line_comment,
+    $.block_comment,
+  ],
 
-    word: $ => $._lower_id,
+  word: $ => $._lower_id,
 
-    rules: {
-        dbscheme: $ => choice(repeat($.entry)),
+  rules: {
+    dbscheme: $ => choice(repeat($.entry)),
 
-        entry: $ => choice(
-            $.table,
-            $.unionDecl,
-            $.caseDecl,
-            $.qldoc,
-        ),
+    entry: $ => choice(
+      $.table,
+      $.unionDecl,
+      $.caseDecl,
+      $.qldoc,
+    ),
 
-        table: $ => seq(
-            repeat($.annotation),
-            field('tableName', $.tableName),
-            '(',
-            sep1($.column, ','),
-            ')',
-            optional(';')
-        ),
+    table: $ => seq(
+      repeat($.annotation),
+      field('tableName', $.tableName),
+      '(',
+      sep1($.column, ','),
+      ')',
+      optional(';'),
+    ),
 
-        annotation: $ => choice(
-            seq("#", field('simpleAnnotation', $.annotName)),
-            field('argsAnnotation', $.argsAnnotation),
-        ),
+    annotation: $ => choice(
+      seq('#', field('simpleAnnotation', $.annotName)),
+      field('argsAnnotation', $.argsAnnotation),
+    ),
 
-        argsAnnotation: $ => seq(
-            seq("#", field('name', $.annotName)),
-            '[',
-            sep($.simpleId, ','),
-            ']',
-        ),
+    argsAnnotation: $ => seq(
+      seq('#', field('name', $.annotName)),
+      '[',
+      sep($.simpleId, ','),
+      ']',
+    ),
 
-        tableName: $ => $.simpleId,
+    tableName: $ => $.simpleId,
 
-        column: $ => seq(
-            field('qldoc', optional($.qldoc)),
-            field('isUnique', optional($.unique)),
-            field('reprType', $.reprType),
-            field('colName', $.simpleId),
-            ':',
-            field('colType', $.colType),
-            field('isRef', optional($.ref)),
-        ),
+    column: $ => seq(
+      field('qldoc', optional($.qldoc)),
+      field('isUnique', optional($.unique)),
+      field('reprType', $.reprType),
+      field('colName', $.simpleId),
+      ':',
+      field('colType', $.colType),
+      field('isRef', optional($.ref)),
+    ),
 
-        unionDecl: $ => seq(
-            field('base', $.dbtype),
-            '=',
-            sep1($.dbtype, '|'),
-            optional(';'),
-        ),
+    unionDecl: $ => seq(
+      field('base', $.dbtype),
+      '=',
+      sep1($.dbtype, '|'),
+      optional(';'),
+    ),
 
-        caseDecl: $ => seq(
-            "case",
-            field('base', $.dbtype),
-            '.',
-            field('discriminator', $.simpleId),
-            'of',
-            sep1($.branch, '|'),
-            optional(';'),
-        ),
+    caseDecl: $ => seq(
+      'case',
+      field('base', $.dbtype),
+      '.',
+      field('discriminator', $.simpleId),
+      'of',
+      sep1($.branch, '|'),
+      optional(';'),
+    ),
 
-        branch: $ => seq(
-            field('qldoc', optional($.qldoc)),
-            $.integer,
-            '=',
-            $.dbtype,
-        ),
+    branch: $ => seq(
+      field('qldoc', optional($.qldoc)),
+      $.integer,
+      '=',
+      $.dbtype,
+    ),
 
-        colType: $ => choice(
-            $.int,
-            $.float,
-            $.boolean,
-            $.date,
-            $.string,
-            $.dbtype
-        ),
+    colType: $ => choice(
+      $.int,
+      $.float,
+      $.boolean,
+      $.date,
+      $.string,
+      $.dbtype,
+    ),
 
-        reprType: $ => choice(
-            $.int,
-            $.float,
-            $.boolean,
-            $.date,
-            seq($.varchar, '(', $.integer, ')'),
-            $.string,
-        ),
+    reprType: $ => choice(
+      $.int,
+      $.float,
+      $.boolean,
+      $.date,
+      seq($.varchar, '(', $.integer, ')'),
+      $.string,
+    ),
 
-        key: $ => 'key',
-        ref: $ => 'ref',
-        int: $ => 'int',
-        float: $ => 'float',
-        boolean: $ => 'boolean',
-        date: $ => 'date',
-        varchar: $ => 'varchar',
-        string: $ => 'string',
-        unique: $ => 'unique',
+    key: _ => 'key',
+    ref: _ => 'ref',
+    int: _ => 'int',
+    float: _ => 'float',
+    boolean: _ => 'boolean',
+    date: _ => 'date',
+    varchar: _ => 'varchar',
+    string: _ => 'string',
+    unique: _ => 'unique',
 
-        // The following nodes match the definitions in the `tree-sitter-ql` grammar
-        annotName: $ => $._lower_id,
-        simpleId: $ => choice($._lower_id, $._upper_id),
-        _lower_id: $ => /[a-z][A-Za-z0-9_]*/,
-        _upper_id: $ => /[A-Z][A-Za-z0-9_]*/,
+    // The following nodes match the definitions in the `tree-sitter-ql` grammar
+    annotName: $ => $._lower_id,
+    simpleId: $ => choice($._lower_id, $._upper_id),
+    _lower_id: _ => /[a-z][A-Za-z0-9_]*/,
+    _upper_id: _ => /[A-Z][A-Za-z0-9_]*/,
 
-        integer: $ => /[0-9]+/,
-        dbtype: $ => /@[a-z][A-Za-z0-9_]*/,
+    integer: _ => /[0-9]+/,
+    dbtype: _ => /@[a-z][A-Za-z0-9_]*/,
 
-        qldoc: $ => /\/\*\*[^*]*\*+([^/*][^*]*\*+)*\//,
-        line_comment: $ => /\/\/[^\r\n]*/,
-        block_comment: $ => /\/\*([^*]+\*+([^/*][^*]*\*+)*|\*)\//,
-    }
+    qldoc: _ => /\/\*\*[^*]*\*+([^/*][^*]*\*+)*\//,
+    line_comment: _ => /\/\/[^\r\n]*/,
+    block_comment: _ => /\/\*([^*]+\*+([^/*][^*]*\*+)*|\*)\//,
+  },
 });
 
+/**
+ *
+ * @param {RuleOrLiteral} rule
+ * @param {string} s
+ */
 function sep(rule, s) {
-    return optional(sep1(rule, s))
+  return optional(sep1(rule, s));
 }
 
+/**
+ *
+ * @param {RuleOrLiteral} rule
+ * @param {string} s
+ */
 function sep1(rule, s) {
-    return seq(rule, repeat(seq(s, rule)))
+  return seq(rule, repeat(seq(s, rule)));
 }
