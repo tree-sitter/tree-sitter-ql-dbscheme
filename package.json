@@ -2,7 +2,7 @@
   "name": "tree-sitter-ql-dbscheme",
   "version": "0.23.0",
   "description": "QL DBScheme grammar for tree-sitter",
-  "repository": "github:tree-sitter/tree-sitter-ql-dbscheme",
+  "repository": "https://github.com/tree-sitter/tree-sitter-ql-dbscheme",
   "license": "MIT",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -14,19 +14,21 @@
   ],
   "files": [
     "grammar.js",
+    "tree-sitter.json",
     "binding.gyp",
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
   "dependencies": {
-    "node-addon-api": "^8.1.0",
+    "node-addon-api": "^8.2.2",
     "node-gyp-build": "^4.8.2"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.23.0",
-    "prebuildify": "^6.0.1"
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.24.4"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.1"
@@ -41,14 +43,5 @@
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.dbscheme",
-      "file-types": [
-        "dbscheme"
-      ],
-      "injection-regex": "dbscheme"
-    }
-  ]
+  }
 }
