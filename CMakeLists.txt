@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-ql-dbscheme
-        VERSION "0.23.0"
+        VERSION "0.23.1"
         DESCRIPTION "QL DBScheme grammar for tree-sitter"
         HOMEPAGE_URL "https://github.com/tree-sitter/tree-sitter-ql-dbscheme"
         LANGUAGES C)
